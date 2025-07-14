@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bootcamp-frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bootcamp-frontend
+  template:
+    metadata:
+      labels:
+        app: bootcamp-frontend
+    spec:
+      containers:
+        - name: mi-app
+          image: ghcr.io/clacklast/frontend:latest
+          ports:
+            - containerPort: 5000
+          resources:
+            limits:
+              memory: "32Mi"
+              cpu: "40m"

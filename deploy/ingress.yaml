@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bootcamp-frontend-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: bootcamp-frontend.bootcamp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bootcamp-frontend-service
+                port:
+                  number: 4001
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: bootcamp-backend-service
+                port:
+                  number: 80
